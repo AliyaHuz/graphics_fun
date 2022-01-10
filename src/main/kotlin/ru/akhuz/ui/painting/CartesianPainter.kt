@@ -16,18 +16,20 @@ class CartesianPainter(private val plane: CartesianPlane): Painter
     var tSizeMax = 6
     override fun paint(g: Graphics){
         paintAxes(g) //в него переносим старый код пэйнтера
-        paintTickX(g)
-        paintTickY(g)
-        paintLabelsX(g)
-        paintLabelsY(g)
+        //paintTickX(g)
+        //paintTickY(g)
+        //paintLabelsX(g)
+        //paintLabelsY(g)
     }
 
     private fun paintTickX(g: Graphics){
         with (plane){(g as Graphics2D).apply {
             stroke=BasicStroke(2F)
-            color = minTickColor
-            var k = Math.round(width/(60*(xMax-xMin))).toDouble()
             var i = xMin
+            var k = Math.round(width/(60*(xMax-xMin))).toDouble()
+            /*color = minTickColor
+
+
             while (i<xMax){
                 i+=(0.1*k)
                 i = (Math.round(i*10)).toDouble()/10
@@ -42,7 +44,7 @@ class CartesianPainter(private val plane: CartesianPlane): Painter
                 i+=(0.5*k)
                 i = (Math.round(i*10)).toDouble()/10
                 drawLine(xCtr2Scr(i), yCtr2Scr(0.0) - tSizeAv, xCtr2Scr(i), yCtr2Scr(0.0) + tSizeAv)
-            }
+            }*/
             color = maxTickColor
             i = Math.round(xMin).toDouble()
             drawLine(xCtr2Scr(i), yCtr2Scr(0.0) - tSizeAv, xCtr2Scr(i), yCtr2Scr(0.0) + tSizeAv)
@@ -60,9 +62,9 @@ class CartesianPainter(private val plane: CartesianPlane): Painter
     private fun paintTickY(g: Graphics){
         with (plane){(g as Graphics2D).apply {
             stroke=BasicStroke(2F)
-            color = minTickColor
+            //color = minTickColor
             var i = yMin
-            while (i<yMax){
+            /*while (i<yMax){
                 i+=0.1
                 i = (Math.round(i*10)).toDouble()/10
                 drawLine(xCtr2Scr(0.0)- tSizeMin, yCtr2Scr(i), xCtr2Scr(0.0)+ tSizeMin, yCtr2Scr(i))
@@ -76,7 +78,7 @@ class CartesianPainter(private val plane: CartesianPlane): Painter
                 i+=0.5
                 i = (Math.round(i*10)).toDouble()/10
                 drawLine(xCtr2Scr(0.0)- tSizeAv, yCtr2Scr(i), xCtr2Scr(0.0)+ tSizeAv, yCtr2Scr(i))
-            }
+            }*/
             color = maxTickColor
             i = Math.round(yMin).toDouble()
             drawLine(xCtr2Scr(0.0) - tSizeAv, yCtr2Scr(i), xCtr2Scr(0.0) + tSizeAv, yCtr2Scr(i))

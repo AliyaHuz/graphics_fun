@@ -33,7 +33,7 @@ class MainFrame: JFrame() {
     val tmaxM: SpinnerNumberModel
 
     init{
-        minimumSize = Dimension(924,616)
+        minimumSize = Dimension(1200,700)
         defaultCloseOperation = EXIT_ON_CLOSE
         lbl_xmin = JLabel().apply{ text = "Xmin"}
         lbl_xmax = JLabel().apply { text = "Xmax" }
@@ -74,13 +74,13 @@ class MainFrame: JFrame() {
         )
 
         val cartesianPainter1 = CartesianPainter(plane1)
-        val funPainter1=FunctionPainter(plane1, Func, Color.BLUE)
+        val funPainter1 = FunctionPainter(plane1, Func, Color.BLUE)
         val painters1 = mutableListOf(cartesianPainter1, funPainter1)
         val cartesianPainter2 = CartesianPainter(plane2)
-        val funPainter2=FunctionPainter(plane2, ParamFunX, Color.RED)
+        val funPainter2 = FunctionPainter(plane2, ParamFunX, Color.RED)
         val painters2 = mutableListOf(cartesianPainter2, funPainter2)
         val cartesianPainter3 = CartesianPainter(plane3)
-        val funPainter3= FunctionPainter(plane3, ParamFunY, Color.GREEN)
+        val funPainter3 = FunctionPainter(plane3, ParamFunY, Color.GREEN)
         val painters3 = mutableListOf(cartesianPainter3, funPainter3)
 
 
@@ -154,6 +154,24 @@ class MainFrame: JFrame() {
                         .addComponent(ppan2, 300,300,300)
                     )
                     .addGap(8)
+                    .addGroup(
+                        createParallelGroup()
+                            .addComponent(lbl_xmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_xmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_ymin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_ymax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_tmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_tmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                    )
+                    .addGroup(
+                        createParallelGroup()
+                            .addComponent(spn_xmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spn_xmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spn_ymin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spn_ymax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spn_tmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spn_tmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                    )
             )
             setVerticalGroup(
                 createSequentialGroup()
@@ -164,12 +182,47 @@ class MainFrame: JFrame() {
                             .addGroup(
                                 createSequentialGroup()
                                     .addComponent(ppan1, 300,300,300)
+                                    .addGap(4)
                                     .addComponent(ppan2, 300,300,300)
+                            )
+                            .addGroup(
+                                createSequentialGroup()
+                                    .addComponent(lbl_xmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4)
+                                    .addComponent(lbl_xmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4)
+                                    .addComponent(lbl_ymin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(7)
+                                    .addComponent(lbl_ymax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4)
+                                    .addComponent(lbl_tmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4)
+                                    .addComponent(lbl_tmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                            )
+                            .addGroup(
+                                createSequentialGroup()
+                                    .addComponent(spn_xmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1)
+                                    .addComponent(spn_xmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1)
+                                    .addComponent(spn_ymin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1)
+                                    .addComponent(spn_ymax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1)
+                                    .addComponent(spn_tmin, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
+                                    .addGap(1)
+                                    .addComponent(spn_tmax, GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE,GroupLayout.PREFERRED_SIZE)
                             )
                     )
                     .addGap(8)
             )
         }
-
+        pack()
+        plane1.width = mpan.width
+        plane1.height = mpan.height
+        plane2.width = ppan1.width
+        plane2.height = ppan1.height
+        plane3.width = ppan2.width
+        plane3.height = ppan2.height
     }
 }
