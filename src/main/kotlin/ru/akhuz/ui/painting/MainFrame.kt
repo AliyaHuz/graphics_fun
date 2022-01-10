@@ -33,7 +33,7 @@ class MainFrame: JFrame() {
     val tmaxM: SpinnerNumberModel
 
     init{
-        minimumSize = Dimension(600,600)
+        minimumSize = Dimension(924,616)
         defaultCloseOperation = EXIT_ON_CLOSE
         lbl_xmin = JLabel().apply{ text = "Xmin"}
         lbl_xmax = JLabel().apply { text = "Xmax" }
@@ -61,14 +61,14 @@ class MainFrame: JFrame() {
             spn_ymax.value as Double
         )
         val plane2 = CartesianPlane(
+            spn_tmin.value as Double,
+            spn_tmax.value as Double,
             spn_xmin.value as Double,
-            spn_xmax.value as Double,
-            spn_ymin.value as Double,
-            spn_ymax.value as Double
+            spn_xmax.value as Double
         )
         val plane3 = CartesianPlane(
-            spn_xmin.value as Double,
-            spn_xmax.value as Double,
+            spn_tmin.value as Double,
+            spn_tmax.value as Double,
             spn_ymin.value as Double,
             spn_ymax.value as Double
         )
@@ -81,7 +81,7 @@ class MainFrame: JFrame() {
         val painters2 = mutableListOf(cartesianPainter2, funPainter2)
         val cartesianPainter3 = CartesianPainter(plane3)
         val funPainter3= FunctionPainter(plane3, ParamFunY, Color.GREEN)
-            val painters3 = mutableListOf(cartesianPainter3, funPainter3)
+        val painters3 = mutableListOf(cartesianPainter3, funPainter3)
 
 
         mpan = GraphicsPanel(painters1).apply{ background = Color.WHITE}
@@ -131,11 +131,15 @@ class MainFrame: JFrame() {
         }
         spn_tmin.addChangeListener{
             tmaxM.minimum = spn_tmin.value as Double + 0.1
+            plane2.xSegment = Pair(spn_tmin.value as Double, spn_tmax.value as Double)
+            plane3.xSegment = Pair(spn_tmin.value as Double, spn_tmax.value as Double)
             ppan1.repaint()
             ppan2.repaint()
         }
         spn_tmax.addChangeListener{
             tminM.maximum = spn_tmax.value as Double - 0.1
+            plane2.xSegment = Pair(spn_tmin.value as Double, spn_tmax.value as Double)
+            plane3.xSegment = Pair(spn_tmin.value as Double, spn_tmax.value as Double)
             ppan1.repaint()
             ppan2.repaint()
         }
@@ -143,11 +147,11 @@ class MainFrame: JFrame() {
             setHorizontalGroup(
                 createSequentialGroup()
                     .addGap(8)
-                    .addComponent(mpan, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                    .addComponent(mpan,600,600,600)
                     .addGap(8)
                     .addGroup(createParallelGroup()
-                        .addComponent(ppan1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
-                        .addComponent(ppan2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                        .addComponent(ppan1, 300,300,300)
+                        .addComponent(ppan2, 300,300,300)
                     )
                     .addGap(8)
             )
@@ -156,11 +160,11 @@ class MainFrame: JFrame() {
                     .addGap(8)
                     .addGroup(
                         createParallelGroup()
-                            .addComponent(mpan, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                            .addComponent(mpan, 600,600,600)
                             .addGroup(
                                 createSequentialGroup()
-                                    .addComponent(ppan1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
-                                    .addComponent(ppan2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)
+                                    .addComponent(ppan1, 300,300,300)
+                                    .addComponent(ppan2, 300,300,300)
                             )
                     )
                     .addGap(8)
