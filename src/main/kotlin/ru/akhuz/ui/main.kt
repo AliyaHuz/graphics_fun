@@ -1,6 +1,10 @@
 package ru.akhuz
 
-fun main(args: Array<String>) {
-    println("Hello, World")
+import ru.akhuz.ui.painting.MainFrame
+
+fun main() {
+    val wnd = MainFrame()
+    wnd.isVisible = true
+    MainFrame().apply { isVisible = true }
 }
 
